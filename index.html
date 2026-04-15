@@ -18,62 +18,63 @@
     <header class="site-header">
         <div class="container header-inner">
             <div class="brand">
-                <i class="fas fa-cloud"></i>
-                <span>Nami Cloud</span>
-                <span class="brand-sub">Secure Gateway</span>
+                <i class="fas fa-heart"></i>
+                <span>Nami x BTS</span>
+                <span class="brand-sub">Love Yourself. Store Securely.</span>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 160px);">
-            <div class="card reveal" style="max-width: 450px; width: 100%; border: 1px solid rgba(255,255,255,0.1); background: rgba(17, 24, 39, 0.8);">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 160px); padding: 20px;">
+            <div class="card reveal" style="max-width: 450px; width: 100%; border: 1px solid var(--border); background: rgba(28, 10, 52, 0.85);">
                 <div style="text-align: center; margin-bottom: 32px;">
-                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: rgba(99, 102, 241, 0.1); border-radius: 24px; margin-bottom: 24px; border: 1px solid rgba(99, 102, 241, 0.2);">
-                        <i class="fas fa-shield-halved" style="font-size: 2.5rem; color: var(--accent);"></i>
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 90px; height: 90px; background: rgba(187, 134, 252, 0.1); border-radius: 30px; margin-bottom: 24px; border: 1px solid var(--border-bright);">
+                        <i class="fas fa-magic" style="font-size: 2.5rem; color: var(--accent);"></i>
                     </div>
-                    <h1 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 8px;">Welcome Back</h1>
-                    <p style="color: var(--muted);">Manage your digital life in one place</p>
+                    <h1 style="font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 8px; background: var(--bts-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Magic Shop</h1>
+                    <p style="color: var(--muted); font-size: 1rem;">Enter your gateway to the Army Drive</p>
                 </div>
 
                 <form id="auth-section" onsubmit="return false;">
                     <div class="input-group">
-                        <label style="font-size: 0.875rem; color: var(--muted); margin-left: 4px;">Email Address</label>
+                        <label style="font-size: 0.85rem; color: var(--muted); margin-left: 4px; margin-bottom: 8px; display: block;">Army ID (Email)</label>
                         <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input id="email" type="email" placeholder="name@example.com" required>
+                            <i class="fas fa-user-astronaut"></i>
+                            <input id="email" type="email" placeholder="army@bts.com" required>
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <label style="font-size: 0.875rem; color: var(--muted); margin-left: 4px;">Password</label>
+                    <div class="input-group" style="margin-top: 20px;">
+                        <label style="font-size: 0.85rem; color: var(--muted); margin-left: 4px; margin-bottom: 8px; display: block;">Crystal Snow (Password)</label>
                         <div class="input-with-icon">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-gem"></i>
                             <input id="password" type="password" placeholder="••••••••" required>
                         </div>
                     </div>
 
                     <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 16px;">
-                        <button id="login-btn" style="width: 100%;">
-                            Sign In <i class="fas fa-arrow-right"></i>
+                        <button id="login-btn" style="width: 100%; height: 50px;">
+                            Open the Door <i class="fas fa-door-open"></i>
                         </button>
                         
                         <div style="display: flex; align-items: center; gap: 12px; margin: 8px 0;">
                             <div style="flex: 1; height: 1px; background: var(--border);"></div>
-                            <span style="font-size: 0.875rem; color: var(--muted);">or</span>
+                            <span style="font-size: 0.8rem; color: var(--muted);">or join the fanchant</span>
                             <div style="flex: 1; height: 1px; background: var(--border);"></div>
                         </div>
                         
-                        <button id="signup-btn" class="secondary" style="width: 100%;">
-                            Create New Account
+                        <button id="signup-btn" class="secondary" style="width: 100%; height: 50px;">
+                            Become a New Member
                         </button>
                     </div>
 
-                    <div id="auth-msg" class="reveal" style="margin-top: 24px; text-align: center; min-height: 1.5em; font-size: 0.875rem;"></div>
+                    <div id="auth-msg" class="reveal" style="margin-top: 24px; text-align: center; min-height: 1.5em; font-size: 0.875rem; color: var(--accent);"></div>
                 </form>
             </div>
-            <p style="margin-top: 32px; color: var(--muted); font-size: 0.875rem;">
-                Protected by industry-leading encryption
+            <p style="margin-top: 32px; color: var(--muted); font-size: 0.85rem; text-align: center;">
+                Borahae! <i class="fas fa-heart" style="color: var(--accent);"></i><br>
+                Supporting Army worldwide with secure storage.
             </p>
         </div>
     </main>

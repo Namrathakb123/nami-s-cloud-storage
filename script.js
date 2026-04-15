@@ -140,19 +140,29 @@ function createFileCard(file) {
     const fileIcon = getFileIcon(file.name);
     return `
         <div class="file-card reveal" data-file-path="${file.name}">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                <i class="fas fa-${fileIcon} fa-2x" style="color: var(--accent);"></i>
-                <div style="overflow: hidden;">
-                    <div style="font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${file.name}">${file.name}</div>
-                    <div style="color: var(--muted); font-size: 0.875rem;">${formatFileSize(file.metadata.size)}</div>
+            <div style="display: flex; flex-direction: column; height: 100%;">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                    <div style="width: 48px; height: 48px; min-width: 48px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(99, 102, 241, 0.2);">
+                        <i class="fas fa-${fileIcon}" style="font-size: 1.25rem; color: var(--accent);"></i>
+                    </div>
+                    <div style="overflow: hidden;">
+                        <div style="font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text);" title="${file.name}">${file.name}</div>
+                        <div style="color: var(--muted); font-size: 0.75rem; margin-top: 2px;">${formatFileSize(file.metadata.size)} • ${formatDate(file.created_at).split(',')[0]}</div>
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.875rem;">
-                <span>${formatDate(file.created_at)}</span>
-                <div style="display: flex; gap: 8px;">
-                    <button class="preview-btn" title="Preview"><i class="fas fa-eye"></i></button>
-                    <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
-                    <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                
+                <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; gap: 4px;">
+                        <button class="preview-btn secondary" style="padding: 8px; border-radius: 10px; font-size: 0.8rem;" title="Preview">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="download-btn secondary" style="padding: 8px; border-radius: 10px; font-size: 0.8rem;" title="Download">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                    <button class="delete-btn secondary" style="padding: 8px; border-radius: 10px; color: var(--error); font-size: 0.8rem;" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -204,7 +214,25 @@ async function loadFiles(searchQuery = '', sortBy = 'name-asc') {
 
         filesList.innerHTML = currentFiles.length 
             ? currentFiles.map(createFileCard).join('')
-            : '<div class="reveal" style="text-align: center; color: var(--muted); grid-column: 1/-1; padding: 40px;"><i class="fas fa-folder-open fa-3x"></i><p style="margin-top: 16px;">No files found matching your search</p></div>';
+            : '<div class="reveal" style="text-align: center; color: var(--muted); grid-column: 1/-1; padding: 60px 20px; border: 1px dashed var(--border); border-radius: 24px; background: rgba(255,255,255,0.01);"><i class="fas fa-folder-open fa-3x" style="opacity: 0.3; margin-bottom: 16px; display: block;"></i>No files found matching your search</div>';
+
+        const fileCountEl = document.getElementById('file-count');
+        if (fileCountEl) {
+            fileCountEl.textContent = `${currentFiles.length} item${currentFiles.length !== 1 ? 's' : ''}`;
+        }
+
+        // Update storage stats
+        const totalBytes = currentFiles.reduce((acc, file) => acc + (file.metadata.size || 0), 0);
+        const totalUsageEl = document.getElementById('total-usage');
+        if (totalUsageEl) {
+            totalUsageEl.textContent = formatFileSize(totalBytes);
+        }
+        const usageBar = document.getElementById('usage-bar');
+        if (usageBar) {
+            // Assume 100MB free tier for visualization if unknown
+            const percentage = Math.min((totalBytes / (100 * 1024 * 1024)) * 100, 100);
+            usageBar.style.width = `${percentage || 5}%`;
+        }
 
         // Add event listeners to new cards
         document.querySelectorAll('.preview-btn').forEach(btn => 
